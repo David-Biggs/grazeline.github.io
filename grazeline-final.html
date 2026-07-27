@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrazeLine - Virtual Fencing for Cattle Farmers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        header {
+            background: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2D5016;
+            letter-spacing: -0.5px;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #2D5016;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f5f9f3 0%, #f0f7eb 100%);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a3a0f;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #2D5016;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid #2D5016;
+            cursor: pointer;
+            margin: 0 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: #1f2c0e;
+            border-color: #1f2c0e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 80, 22, 0.2);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: #2D5016;
+            border: 2px solid #2D5016;
+        }
+
+        .cta-button.secondary:hover {
+            background: #f0f7eb;
+        }
+
+        section {
+            padding: 5rem 0;
+            background: white;
+            margin-bottom: 1px;
+        }
+
+        section:nth-child(even) {
+            background: #fafafa;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #1a3a0f;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #1a3a0f;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 650px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-section {
+            border-top: 3px solid #2D5016;
+            padding-top: 2rem;
+        }
+
+        .problem-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #2D5016;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0EA5A5;
+            border-radius: 4px;
+        }
+
+        section:nth-child(even) .problem-card {
+            background: white;
+        }
+
+        .problem-card h4 {
+            font-size: 1.1rem;
+            color: #1a3a0f;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .problem-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        section:nth-child(even) .benefit-card {
+            background: white;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            border-color: #0EA5A5;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: #e8f7f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a3a0f;
+            margin-top: 0;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tier-card {
+            background: white;
+            border: 2px solid #2D5016;
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        section:nth-child(even) .tier-card {
+            background: white;
+        }
+
+        .tier-card:hover {
+            box-shadow: 0 15px 40px rgba(45, 80, 22, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .tier-label {
+            display: inline-block;
+            background: #2D5016;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .tier-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #1a3a0f;
+        }
+
+        .tier-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .tier-features {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .tier-features h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2D5016;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tier-features li {
+            color: #666;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .tier-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0EA5A5;
+            font-weight: bold;
+        }
+
+        .regenerative-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .regenerative-text h3 {
+            color: #2D5016;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .regenerative-text p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .regenerative-benefits {
+            background: #e8f7f6;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .regenerative-benefits h4 {
+            color: #1a3a0f;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .regenerative-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .regenerative-benefits li {
+            color: #1a3a0f;
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .regenerative-benefits li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2D5016;
+            font-weight: bold;
+        }
+
+        .regenerative-image {
+            background: linear-gradient(135deg, #e8f7f6 0%, #d4ede9 100%);
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 4rem;
+        }
+
+        .how-it-works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #2D5016;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a3a0f;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #2D5016 0%, #1f2c0e 100%);
+            color: white;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: #2D5016;
+            border-color: white;
+        }
+
+        .cta-section .cta-button:hover {
+            background: #f0f7eb;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #0EA5A5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .problem-grid,
+            .tier-grid,
+            .regenerative-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-highlight {
+            background: #e8f7f6;
+            border-left: 4px solid #0EA5A5;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .feature-highlight p {
+            color: #1a3a0f;
+            font-weight: 500;
+        }
+
+        .subtitle-small {
+            font-size: 0.95rem;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">GrazeLine</div>
+                <nav>
+                    <a href="#solution">Solution</a>
+                    <a href="#regenerative-intro">Regenerative Farming</a>
+                    <a href="#tiers">Packages</a>
+                    <a href="#regenerative">Learn More</a>
+                    <a href="#contact">Get Started</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Smarter Cattle Management for Modern Farmers</h1>
+            <p>GrazeLine combines precision GPS technology with gentle behavioral guidance to give you complete visibility and control of your herd—whether you farm conventionally or regeneratively.</p>
+            <div>
+                <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Request Demo</button>
+                <button class="cta-button secondary" onclick="document.getElementById('solution').scrollIntoView({behavior: 'smooth'})">Learn How It Works</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="solution">
+        <div class="container">
+            <h2>Our Three-Pillar Solution</h2>
+            <p class="section-subtitle">Complete visibility, flexibility, and accountability for your operation</p>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h3>Automated Management</h3>
+                    <p>Replace physical fences with dynamic boundaries. Program rotations from anywhere, optimize grazing in real time, and adapt instantly to weather or pasture conditions.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Live Monitoring</h3>
+                    <p>Know exactly where every animal is, instantly. Real-time alerts keep you informed of any issues, enabling immediate intervention before problems escalate.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Complete Traceability</h3>
+                    <p>Capture rich data on animal behavior, movement patterns, and grazing practices. Build an asset that documents your sustainability efforts and unlocks premium market access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="regenerative-intro">
+        <div class="container">
+            <h2>What Is Regenerative Farming?</h2>
+            <p class="section-subtitle">A farming approach that improves the land with every grazing cycle</p>
+            
+            <p style="font-size: 1.05rem; color: #555; line-height: 1.9; max-width: 800px;">Regenerative grazing uses high animal density, frequent moves, and extended rest periods to mimic natural patterns. Instead of extracting value from the land, it actively restores soil health, rebuilds biodiversity, and increases productivity year over year. The practice combines improved economics with genuine environmental stewardship.</p>
+        </div>
+    </section>
+
+    <section id="tiers">
+        <div class="container">
+            <h2>Two Solutions, One Platform</h2>
+            <p class="section-subtitle">Choose the GrazeLine package that fits your operation</p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-label">Tier 1 • Foundation</div>
+                    <h3>Animal Tracking</h3>
+                    <p>Start simple. Real-time location tracking and herd counts give you the visibility you need to manage conventional operations efficiently.</p>
+                    <div class="tier-features">
+                        <h4>Includes</h4>
+                        <ul>
+                            <li>GPS location tracking</li>
+                            <li>Herd population monitoring</li>
+                            <li>Mobile alerts</li>
+                            <li>Basic analytics dashboard</li>
+                            <li>Loss prevention insights</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 1.5rem; font-size: 0.95rem; color: #999;">Perfect for improving visibility without changing your current practices.</p>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-label">Tier 2 • Advanced</div>
+                    <h3>Virtual Fencing</h3>
+                    <p>Full control without physical fences. Automated rotations, gentle guidance, and behavior tracking make regenerative—and intensive—grazing management effortless.</p>
+                    <div class="tier-features">
+                        <h4>Includes Everything in Tier 1, Plus:</h4>
+                        <ul>
+                            <li>GPS-guided virtual boundaries</li>
+                            <li>Automated rotations</li>
+                            <li>Gentle audio/pulse guidance</li>
+                            <li>Behavioral tracking & alerts</li>
+                            <li>Grazing pattern analytics</li>
+                            <li>Regenerative practice documentation</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 1.5rem; font-size: 0.95rem; color: #999;">Designed for farmers ready to optimize and transition to regenerative practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="regenerative">
+        <div class="container">
+            <h2>Regenerative Grazing: The Future</h2>
+            <p class="section-subtitle">Higher productivity, healthier land, better economics</p>
+
+            <div class="regenerative-section">
+                <div class="regenerative-text">
+                    <h3>What Is Regenerative Grazing?</h3>
+                    <p>Regenerative grazing is a management practice that uses high animal density, frequent moves, and extended rest periods to mimic natural grazing patterns. It's not just sustainable—it's restorative.</p>
+                    
+                    <p>Instead of treating pasture as a fixed resource, regenerative farmers actively improve their land with every grazing cycle. The results compound: healthier soil, thriving ecosystems, and increased carrying capacity over time.</p>
+
+                    <div class="regenerative-benefits">
+                        <h4>The Regenerative Advantage</h4>
+                        <ul>
+                            <li>Increased soil health and microbial activity</li>
+                            <li>Rebuild biodiversity and ground cover</li>
+                            <li>Improved carbon sequestration</li>
+                            <li>Higher carrying capacity year over year</li>
+                            <li>Access to premium, sustainability-conscious markets</li>
+                            <li>Reduced dependency on inputs and feed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="regenerative-image">
+                </div>
+            </div>
+
+            <div class="feature-highlight">
+                <p>GrazeLine removes the management burden that stops most farmers from transitioning. Automated rotations mean daily moves become effortless—so you can capture all the benefits of regenerative grazing without the operational chaos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>How It Works</h2>
+            <p class="section-subtitle">Simple, intuitive, and effective</p>
+
+            <div class="how-it-works">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Deploy Hardware</h4>
+                    <p>Lightweight GPS collars fit comfortably on cattle. Low power consumption means long battery life and minimal maintenance.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Set Boundaries</h4>
+                    <p>Draw grazing areas on our intuitive platform. Create static zones or schedule daily rotations. Adjust anytime—from your phone or desktop.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Monitor & Guide</h4>
+                    <p>Animals receive gentle audio warnings at boundaries (Tier 2). You get real-time notifications. Immediate visibility into what's happening on your land.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Optimize & Report</h4>
+                    <p>Analyze grazing patterns, movement behavior, and land response. Build a dataset that documents your stewardship and unlocks market opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Who GrazeLine Is Built For</h2>
+            <p class="section-subtitle">Beef, dairy, and conservation operations—anywhere in the world</p>
+
+            <div class="benefits">
+                <div class="benefit-card">
+                    <h3>Beef Producers</h3>
+                    <p>Improve herd health, reduce losses, and optimize grazing rotations. Lower costs while producing cattle with documented sustainability credentials.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Dairy Farmers</h3>
+                    <p>Maximize pasture utilization and rotational grazing efficiency. Better land management means higher milk quality and access to premium markets.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Conservation Operations</h3>
+                    <p>Use grazing as a conservation tool. Controlled animal movement helps restore habitats, manage invasive species, and improve ecosystem health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Transform Your Grazing Operation</h2>
+            <p>Whether you're managing visibility on today's pastures or planning a transition to regenerative practices, GrazeLine gives you the tools and data to succeed.</p>
+            <button class="cta-button" onclick="alert('Get started by contacting our team at hello@grazeline.com')">Request a Demo</button>
+            <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.95rem;">Questions? Email us at <strong>hello@grazeline.com</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 GrazeLine. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">Precision grazing technology designed for cattle farmers worldwide.</p>
+        </div>
+    </footer>
+</body>
+</html>
